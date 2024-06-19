@@ -21,6 +21,10 @@ dev = [
     "pytest>=6.0",
     "pytest-cov",
     "nbproject_test",
+    "torch",
+    "torchvision",
+    "wandb",
+    "lightning"
 ]
 
 [tool.pytest.ini_options]
