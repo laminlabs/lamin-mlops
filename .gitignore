@@ -1,5 +1,6 @@
 docs/lamin-mlops/
 docs/MNIST/
+docs/download_mnist/
 
 # macOS
 .DS_Store
