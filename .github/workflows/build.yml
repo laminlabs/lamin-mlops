@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       GITHUB_EVENT_NAME: ${{ github.event_name }}
+      WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     strategy:
       fail-fast: false
       matrix:
