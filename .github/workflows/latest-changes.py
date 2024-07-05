@@ -243,7 +243,7 @@ def main() -> None:
             "git",
             "clone",
             "--depth=1",
-            "https://x-access-token:{settings.input_token}/laminlabs/lamin-docs",
+            "https://x-access-token:{settings.input_token}@github.com/laminlabs/lamin-docs",
         ]
     )
     if not settings.input_latest_changes_file.is_file():
