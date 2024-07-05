@@ -1,9 +1,6 @@
 name: latest-changes
 
 on:
-  pull_request:
-    branches:
-      - main
   pull_request_target:
     branches:
       - main
@@ -23,4 +20,3 @@ jobs:
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
           input_latest_changes_file: lamin-docs/docs/changelog.md
-          input_latest_changes_header: '# Changelog\n\n'
