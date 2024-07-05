@@ -18,8 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: git clone --depth 1 https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}@github.com/laminlabs/laminci
-      - run: pip install "./laminci[changes]"
+      - run: pip install "laminci[changes]@git+https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}@github.com/laminlabs/laminci"
       - run: laminci changes
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
