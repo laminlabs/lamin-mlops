@@ -278,11 +278,7 @@ def main() -> None:
             ["git", "commit", "-m", "📝 Update changelog"], check=True, cwd="lamin-docs"
         )
         logging.info(f"Pushing changes: {settings.input_latest_changes_file}")
-        subprocess.run(
-            ["git", "push", "origin", f"HEAD:{settings.input_branch_name}"],
-            check=True,
-            cwd="lamin-docs",
-        )
+        subprocess.run(["git", "push"], check=True, cwd="lamin-docs")
         break
     logging.info("Finished")
 
