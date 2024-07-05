@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install "git+https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}gitub.com/laminlabs/laminci[latest]"
+      - run: pip install "git+https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}@gitub.com/laminlabs/laminci[latest]"
       - run: laminci changes
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
