@@ -18,12 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Configure Git
-        run: |
-          git config --global url."https://x-access-token:${LAMIN_BUILD_DOCS}@github.com/".insteadOf "https://github.com/"
-        env:
-          LAMIN_BUILD_DOCS: ${{ secrets.LAMIN_BUILD_DOCS }}
-      - run: pip install "laminci[changes]@git+https://github.com/laminlabs/laminci"
+      - run: git clone --depth 1 https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}@github.com/laminlabs/laminci
+      - run: pip install "./laminci[changes]"
       - run: laminci changes
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
