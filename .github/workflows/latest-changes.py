@@ -234,9 +234,9 @@ def main() -> None:
         )
         sys.exit(1)
     pr = repo.get_pull(number)
-    # if not pr.merged:
-    #     logging.info("The PR was not merged, nothing else to do.")
-    #     sys.exit(0)
+    if not pr.merged:
+        logging.info("The PR was not merged, nothing else to do.")
+        sys.exit(0)
     # clone lamin-docs
     subprocess.run(
         [
@@ -287,6 +287,16 @@ def main() -> None:
             ["git", "commit", "-m", "📝 Update changelog"], check=True, cwd="lamin-docs"
         )
         logging.info(f"Pushing changes: {settings.input_latest_changes_file}")
+        token = settings.input_token.get_secret_value()
+        subprocess.run(
+            [
+                "git",
+                "remote",
+                "set-url",
+                "origin",
+                f"https://x-access-token:{token}@github.com/laminlabs/lamin-docs.git",
+            ]
+        )
         subprocess.run(["git", "push"], check=True, cwd="lamin-docs")
         break
     logging.info("Finished")
