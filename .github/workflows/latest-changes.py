@@ -243,7 +243,7 @@ def main() -> None:
             "git",
             "clone",
             "--depth=1",
-            f"https://x-access-token:{settings.input_token}@github.com/laminlabs/lamin-docs",
+            "https://github.com/laminlabs/lamin-docs",
         ]
     )
     if not settings.input_latest_changes_file.is_file():
@@ -295,7 +295,9 @@ def main() -> None:
                 "set-url",
                 "origin",
                 f"https://x-access-token:{token}@github.com/laminlabs/lamin-docs.git",
-            ]
+            ],
+            check=True,
+            cwd="lamin-docs",
         )
         subprocess.run(["git", "push"], check=True, cwd="lamin-docs")
         break
