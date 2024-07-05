@@ -1,6 +1,9 @@
 name: latest-changes
 
 on:
+  pull_request:
+    branches:
+      - main
   pull_request_target:
     branches:
       - main
@@ -15,8 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -U PyGithub "pydantic>=2.0.0" pydantic-settings "httpx>=0.15.5,<0.26.0" email-validator Jinja2
-      - run: python ./.github/workflows/latest-changes.py
+      - run: pip install "git+https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}gitub.com/laminlabs/laminci[latest]"
+      - run: laminci changes
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
           input_branch_name: ${{ github.event.pull_request.head.ref }}
