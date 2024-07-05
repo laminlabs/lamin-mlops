@@ -239,7 +239,12 @@ def main() -> None:
         sys.exit(0)
     # clone lamin-docs
     subprocess.run(
-        ["git", "clone", "--depth=1", "https://github.com/laminlabs/lamin-docs"]
+        [
+            "git",
+            "clone",
+            "--depth=1",
+            "https://x-access-token:{settings.input_token}/laminlabs/lamin-docs",
+        ]
     )
     if not settings.input_latest_changes_file.is_file():
         logging.error(
