@@ -247,9 +247,13 @@ def main() -> None:
         )
         sys.exit(1)
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions@github.com"], check=True
+        ["git", "config", "user.name", "github-actions"], check=True, cwd="lamin-docs"
+    )
+    subprocess.run(
+        ["git", "config", "user.email", "github-actions@github.com"],
+        check=True,
+        cwd="lamin-docs",
     )
     number_of_trials = 10
     logging.info(f"Number of trials (for race conditions): {number_of_trials}")
