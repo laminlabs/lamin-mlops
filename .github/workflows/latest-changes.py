@@ -234,9 +234,9 @@ def main() -> None:
         )
         sys.exit(1)
     pr = repo.get_pull(number)
-    if not pr.merged:
-        logging.info("The PR was not merged, nothing else to do.")
-        sys.exit(0)
+    # if not pr.merged:
+    #     logging.info("The PR was not merged, nothing else to do.")
+    #     sys.exit(0)
     # clone lamin-docs
     subprocess.run(
         [
