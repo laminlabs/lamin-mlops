@@ -19,4 +19,4 @@ jobs:
       - run: laminci changes
         env:
           input_token: ${{ secrets.LAMIN_BUILD_DOCS }}
-          input_latest_changes_file: lamin-docs/docs/changelog.md
+          input_latest_changes_file: lamin-docs/docs/soon/usecases.md
