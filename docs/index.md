@@ -8,5 +8,4 @@
 :hidden:
 
 guide
-changelog
 ```

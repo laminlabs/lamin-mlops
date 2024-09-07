@@ -1,12 +1,7 @@
 import nox
-from laminci import upload_docs_artifact
-from laminci.nox import build_docs, login_testuser1, run_pre_commit, run_pytest
-
-# we'd like to aggregate coverage information across sessions
-# and for this the code needs to be located in the same
-# directory in every github action runner
-# this also allows to break out an installation section
-nox.options.default_venv_backend = "none"
+from subprocess import run
+from laminci import upload_docs_artifact, run_notebooks
+from laminci.nox import run_pre_commit
 
 
 @nox.session
@@ -16,8 +11,10 @@ def lint(session: nox.Session) -> None:
 
 @nox.session()
 def build(session):
-    session.run(*"uv pip install --system -e .[dev]".split())
-    login_testuser1(session)
-    run_pytest(session)
-    build_docs(session, strict=True)
+    run(
+        "uv pip install --system 'lamindb[jupyter,aws]' torch torchvision lightning wandb",
+        shell=True,
+    )
+    run_notebooks("./docs")
+    run("lndocs --strict", shell=True)
     upload_docs_artifact(aws=True)
