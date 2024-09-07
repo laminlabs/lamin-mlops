@@ -18,7 +18,7 @@ def lint(session: nox.Session) -> None:
 def build(session):
     run(
         session,
-        "uv pip install -q 'lamindb[jupyter,aws]' torch torchvision lightning wandb",
+        "uv pip install --system -q 'lamindb[jupyter,aws]' torch torchvision lightning wandb",
     )
     run_pytest(session)
     build_docs(session, strict=True)
