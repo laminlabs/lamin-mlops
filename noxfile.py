@@ -1,9 +1,7 @@
 import nox
 from subprocess import run
 from laminci import upload_docs_artifact, run_notebooks
-from laminci.nox import build_docs, run_pre_commit
-
-nox.options.default_venv_backend = "none"
+from laminci.nox import run_pre_commit
 
 
 @nox.session
@@ -18,5 +16,5 @@ def build(session):
         shell=True,
     )
     run_notebooks("./docs")
-    build_docs(session, strict=True)
+    run("lndocs --strict", shell=True)
     upload_docs_artifact(aws=True)
