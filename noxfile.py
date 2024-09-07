@@ -1,6 +1,6 @@
 import nox
 from laminci import upload_docs_artifact
-from laminci.nox import build_docs, run_pre_commit, run_pytest
+from laminci.nox import build_docs, run_pre_commit, run_pytest, run
 
 # we'd like to aggregate coverage information across sessions
 # and for this the code needs to be located in the same
@@ -16,6 +16,10 @@ def lint(session: nox.Session) -> None:
 
 @nox.session()
 def build(session):
+    run(
+        session,
+        "uv pip install -q 'lamindb[jupyter,aws]' torch torchvision lightning wandb",
+    )
     run_pytest(session)
     build_docs(session, strict=True)
     upload_docs_artifact(aws=True)
