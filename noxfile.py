@@ -11,9 +11,8 @@ def lint(session: nox.Session) -> None:
 
 @nox.session()
 def build(session):
-    run("uv pip install --system 'scipy>=1.12.0,<1.13.0rc1'", shell=True)
     run(
-        "uv pip install --system 'lamindb[jupyter,aws]' torch torchvision lightning wandb",
+        "uv pip install --system 'lamindb[jupyter]' torch torchvision lightning wandb",
         shell=True,
     )
     run_notebooks("./docs")
