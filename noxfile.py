@@ -1,7 +1,7 @@
 import nox
 from subprocess import run
 from laminci import upload_docs_artifact, run_notebooks
-from laminci.nox import run_pre_commit
+from laminci.nox import run_pre_commit, build_docs
 
 
 @nox.session
@@ -12,9 +12,9 @@ def lint(session: nox.Session) -> None:
 @nox.session()
 def build(session):
     run(
-        "uv pip install --system 'lamindb[jupyter]' torch torchvision lightning wandb",
-        shell=True,
+        session,
+        "uv pip install --system 'lamindb[jupyter]' torchvision lightning wandb mlflow",
     )
     run_notebooks("./docs")
-    run("lndocs --strict", shell=True)
+    build_docs(session, strict=True)
     upload_docs_artifact(aws=True)

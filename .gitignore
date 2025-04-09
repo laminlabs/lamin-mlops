@@ -1,7 +1,3 @@
-docs/lamin-mlops/
-docs/MNIST/
-docs/download_mnist/
-
 # macOS
 .DS_Store
 .AppleDouble
@@ -110,3 +106,13 @@ docs/lamin_mlops.*
 lamin_sphinx
 docs/conf.py
 _docs_tmp*
+test.ipynb
+
+docs/lamin-mlops/
+docs/MNIST/
+docs/download_mnist/
+docs/model_checkpoints
+docs/mlruns
+docs/lightning_logs
+docs/wandb
+docs/data
