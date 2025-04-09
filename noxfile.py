@@ -1,7 +1,6 @@
 import nox
-from subprocess import run
 from laminci import upload_docs_artifact, run_notebooks
-from laminci.nox import run_pre_commit, build_docs
+from laminci.nox import run_pre_commit, build_docs, run
 
 
 @nox.session
