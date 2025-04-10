@@ -25,6 +25,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: checkout lndocs
+        uses: actions/checkout@v4
+        with:
+          repository: laminlabs/lndocs
+          ssh-key: ${{ secrets.READ_LNDOCS }}
+          path: lndocs
+          ref: main
+
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
@@ -41,10 +49,11 @@ jobs:
           aws-region: us-east-1
       - run: |
           pip install "laminci[run-notebooks]@git+https://@github.com/laminlabs/laminci"
-          uv pip install --system "lndocs@git+https://x-access-token:${{ secrets.LAMIN_BUILD_DOCS }}@github.com/laminlabs/lndocs"
           sudo apt-get -y install graphviz
-      # - run: nox -s lint
+
+      - run: nox -s lint
       - run: nox -s build
+
       - uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -57,6 +66,7 @@ jobs:
           channel_id: C05FDBBFJ1F
           status: SUCCESS
           color: good
+
       - uses: voxmedia/github-action-slack-notify-build@v1
         if: ${{ failure() && github.event_name == 'repository_dispatch' }}
         env:
@@ -65,6 +75,7 @@ jobs:
           channel_id: C05FDBBFJ1F
           status: FAILURE
           color: danger
+
       - uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: "_build/html"
