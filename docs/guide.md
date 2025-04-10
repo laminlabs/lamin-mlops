@@ -3,7 +3,7 @@
 ```{toctree}
 :maxdepth: 1
 
-mnist
-wandb
-mlflow
+01_mnist
+02_wandb
+03_mlflow
 ```
