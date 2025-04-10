@@ -24,7 +24,7 @@ def lint(session: nox.Session) -> None:
 def build(session, group):
     run(
         session,
-        "uv pip install --system 'lamindb[jupyter]' torchvision lightning wandb mlflow",
+        "uv pip install --system 'lamindb[jupyter]' torchvision lightning wandb mlflow pytest",
     )
     run(session, f"pytest -s ./tests/test_notebooks.py::test_{group}")
     for path in Path(f"./docs_{group}").glob("*"):
