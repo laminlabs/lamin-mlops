@@ -5,4 +5,5 @@
 
 mnist
 wandb
+mlflow
 ```
