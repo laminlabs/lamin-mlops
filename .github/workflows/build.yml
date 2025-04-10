@@ -19,7 +19,7 @@ jobs:
       matrix:
         python-version: ["3.13"]
         group: ["mlops"]
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
