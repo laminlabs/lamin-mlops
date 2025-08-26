@@ -1,7 +1,10 @@
 from pathlib import Path
 import nox
+import os
 from laminci import upload_docs_artifact
-from laminci.nox import run_pre_commit, build_docs, run
+from laminci.nox import run_pre_commit, build_docs, run, install_lamindb
+
+IS_PR = os.getenv("GITHUB_EVENT_NAME") != "push"
 
 
 GROUPS = {}
@@ -22,9 +25,11 @@ def lint(session: nox.Session) -> None:
 )
 @nox.session()
 def build(session, group):
+    branch = "main" if IS_PR else "release"
+    install_lamindb(session, branch=branch, extras="jupyter")
     run(
         session,
-        "uv pip install --system 'lamindb[jupyter]' torchvision lightning wandb mlflow pytest",
+        "uv pip install --system torchvision lightning wandb mlflow pytest",
     )
     run(session, f"pytest -s ./tests/test_notebooks.py::test_{group}")
     for path in Path(f"./docs_{group}").glob("*"):
