@@ -8,7 +8,7 @@ IS_PR = os.getenv("GITHUB_EVENT_NAME") != "push"
 
 
 GROUPS = {}
-GROUPS["mlops"] = ["mnist.ipynb", "wandb.ipynb", "mlflow.ipynb"]
+GROUPS["mlops"] = ["mnist.ipynb", "wandb.ipynb", "mlflow.ipynb", "croissant.ipynb"]
 
 
 @nox.session
