@@ -27,7 +27,8 @@ class LitAutoEncoder(lightning.LightningModule):
         z = self.encoder(x)
         x_hat = self.decoder(z)
         loss = nn.functional.mse_loss(x_hat, x)
-        self.log("train_loss", loss)
+        self.log("train_loss", loss, on_epoch=True)
+        self.log("val_loss", loss, on_epoch=True)
         return loss
 
     def configure_optimizers(self) -> optim.Optimizer:
