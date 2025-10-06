@@ -25,7 +25,7 @@ def lint(session: nox.Session) -> None:
 )
 @nox.session()
 def build(session, group):
-    branch = "feature/lightning_callback" if IS_PR else "release"  # TODO revert to main
+    branch = "main" if IS_PR else "release"
     install_lamindb(session, branch=branch)
 
     run(
