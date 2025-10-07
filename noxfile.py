@@ -26,12 +26,14 @@ def lint(session: nox.Session) -> None:
 @nox.session()
 def build(session, group):
     branch = "main" if IS_PR else "release"
-    install_lamindb(session, branch=branch, extras="jupyter")
+    install_lamindb(session, branch=branch)
+
     run(
         session,
         "uv pip install --system torchvision lightning wandb mlflow pytest",
     )
     run(session, f"pytest -s ./tests/test_notebooks.py::test_{group}")
+
     for path in Path(f"./docs_{group}").glob("*"):
         path.rename(f"./docs/{path.name}")
     build_docs(session, strict=True)

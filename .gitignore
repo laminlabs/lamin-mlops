@@ -93,8 +93,9 @@ celerybeat-schedule
 venv/
 ENV/
 
-# mypy
+# lint
 .mypy_cache/
+.ruff_cache/
 
 # IDE settings
 .vscode/
