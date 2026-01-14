@@ -26,7 +26,7 @@ def lint(session: nox.Session) -> None:
 @nox.session()
 def build(session, group):
     install_lamindb(
-        session, branch=" feature/improved_lightning"
+        session, branch="feature/improved_lightning"
     )  # TODO REVERT TO branch
 
     run(
