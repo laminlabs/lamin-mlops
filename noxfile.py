@@ -31,7 +31,7 @@ def build(session, group):
 
     run(
         session,
-        "uv pip install --system torchvision lightning wandb mlflow pytest",
+        "uv pip install --system torchvision lightning wandb mlflow ipywidgets pytest",
     )
     run(session, f"pytest -s ./tests/test_notebooks.py::test_{group}")
 
