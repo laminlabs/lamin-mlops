@@ -24,8 +24,8 @@ def lint(session: nox.Session) -> None:
     ],
 )
 def build(session, group):
-    convert_executable_md_files()
     install_lamindb(session, branch="main")
+    convert_executable_md_files()
     run(
         session,
         "uv pip install --system torchvision lightning wandb mlflow ipywidgets pytest",
