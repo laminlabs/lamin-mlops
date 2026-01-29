@@ -1,7 +1,7 @@
 from pathlib import Path
 import nox
 import os
-from laminci import upload_docs_artifact
+from laminci import convert_executable_md_files, upload_docs_artifact
 from laminci.nox import run_pre_commit, build_docs, run, install_lamindb
 
 IS_PR = os.getenv("GITHUB_EVENT_NAME") != "push"
@@ -23,8 +23,8 @@ def lint(session: nox.Session) -> None:
         "mlops",
     ],
 )
-@nox.session()
 def build(session, group):
+    convert_executable_md_files()
     install_lamindb(session, branch="main")
     run(
         session,
