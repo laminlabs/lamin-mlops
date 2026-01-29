@@ -117,3 +117,5 @@ docs/mlruns
 docs/lightning_logs
 docs/wandb
 docs/data
+docs/testmodels/mlflow
+docs/testmodels/wandb
