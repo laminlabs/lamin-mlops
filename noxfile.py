@@ -1,8 +1,9 @@
-from pathlib import Path
-import nox
 import os
+from pathlib import Path
+
+import nox
 from laminci import convert_executable_md_files, upload_docs_artifact
-from laminci.nox import run_pre_commit, build_docs, run, install_lamindb
+from laminci.nox import build_docs, install_lamindb, run, run_pre_commit
 
 IS_PR = os.getenv("GITHUB_EVENT_NAME") != "push"
 

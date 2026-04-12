@@ -6,5 +6,6 @@
 mnist
 wandb
 mlflow
+clearml
 croissant
 ```
