@@ -1,10 +1,10 @@
 import torch
-import lightning
+import lightning.pytorch as pl
 
 from torch import optim, nn
 
 
-class LitAutoEncoder(lightning.LightningModule):
+class LitAutoEncoder(pl.LightningModule):
     def __init__(self, hidden_size: int, bottleneck_size: int) -> None:
         super().__init__()
         self.encoder = nn.Sequential(

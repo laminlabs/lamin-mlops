@@ -7,7 +7,7 @@ execute_via: python
 LaminDB can be integrated with [MLflow](https://mlflow.org/) to track model checkpoints as artifacts linked against training runs.
 
 ```python
-# pip install lamindb torchvision lightning wandb
+# pip install lamindb torchvision lightning mlflow
 !lamin init --storage ./lamin-mlops
 ```
 
@@ -119,9 +119,12 @@ with mlflow.start_run() as mlflow_run:
     # create model
     autoencoder = LitAutoEncoder(hidden_size=32, bottleneck_size=16)
 
-    # Create a LaminDB Lightning integration Checkpoint which also (optionally) annotates checkpoints by desired metrics
+    # Create a LaminDB Checkpoint callback and annotate checkpoints by desired metrics
     lamindb_callback = ll.Checkpoint(
         dirpath=f"testmodels/mlflow/{mlflow_run.info.run_id}",
+        monitor="val_loss",
+        mode="min",
+        save_top_k=3,
         features={
             "run": {
                 "mlflow_run_id": mlflow_run.info.run_id,
@@ -153,6 +156,10 @@ with mlflow.start_run() as mlflow_run:
         kind="model",
     ).save()
 ```
+
+Like in the W&B tutorial, `dirpath` defines the Lamin key prefix for checkpoint
+artifacts. With `ln.track()` active and default `run_uid_is_version=True`, Lamin
+adds the run UID segment so each tracked run gets a unique artifact namespace.
 
 ## MLflow and LaminDB user interfaces together
 

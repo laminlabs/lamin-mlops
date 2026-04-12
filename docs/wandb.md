@@ -114,10 +114,13 @@ wandb_logger.experiment.config["batch_size"] = MODEL_CONFIG["batch_size"]
 ```
 
 ```python
-# Create a LaminDB LightningCallback which also (optionally) annotates checkpoints by desired metrics
+# Create a LaminDB Checkpoint callback and annotate checkpoints with desired metrics
 wandb_logger.experiment.id
 lamindb_callback = ll.Checkpoint(
     dirpath=f"testmodels/wandb/{wandb_logger.experiment.id}",
+    monitor="val_loss",
+    mode="min",
+    save_top_k=3,
     features={
         "run": {
             "wandb_run_id": wandb_logger.experiment.id,
@@ -140,6 +143,11 @@ trainer.fit(
     model=autoencoder, train_dataloaders=train_loader, val_dataloaders=val_loader
 )
 ```
+
+Since `dirpath` is explicitly set above, Lamin artifact keys are rooted under that
+prefix. When `ln.track()` is active (the default in this tutorial) and
+`run_uid_is_version=True`, Lamin appends the tracked run UID segment to avoid key
+collisions across runs.
 
 ```python
 wandb_logger.experiment.name
