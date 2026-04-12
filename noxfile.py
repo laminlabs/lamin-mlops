@@ -24,7 +24,7 @@ def lint(session: nox.Session) -> None:
     ],
 )
 def build(session, group):
-    install_lamindb(session, branch="main")
+    install_lamindb(session, branch="refactor-lightning-integration")
     convert_executable_md_files()
     run(
         session,
