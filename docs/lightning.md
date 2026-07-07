@@ -2,9 +2,9 @@
 
 This guide offers context on the {class}`lamindb.integrations.lightning.Checkpoint` callback. For end-to-end examples, see the following guides:
 
-- {doc}`docs:clearml`
-- {doc}`docs:wandb`
-- {doc}`docs:mlflow`
+- {doc}`clearml`
+- {doc}`wandb`
+- {doc}`mlflow`
 
 ## Quickstart
 
