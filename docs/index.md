@@ -7,5 +7,5 @@
 :maxdepth: 1
 :hidden:
 
-guide
+mlops
 ```
