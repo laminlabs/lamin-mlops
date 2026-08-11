@@ -4,9 +4,9 @@ execute_via: python
 
 # Curate MNIST
 
-```python
+```bash
 # pip install lamindb torch torchvision lightning
-!lamin init --storage ./lamin-mlops
+lamin init --storage ./lamin-mlops
 ```
 
 ```python
@@ -25,10 +25,10 @@ from torchvision.transforms import ToTensor
 dataset = MNIST(Path.cwd() / "download_mnist", download=True, transform=ToTensor())
 ```
 
-```python
+```bash
 # no need for the zipped files
-!rm -r download_mnist/MNIST/raw/*.gz
-!ls -r download_mnist/MNIST/raw
+rm -r download_mnist/MNIST/raw/*.gz
+ls -r download_mnist/MNIST/raw
 ```
 
 ```python

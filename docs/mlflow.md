@@ -6,9 +6,9 @@ execute_via: python
 
 LaminDB can be integrated with [MLflow](https://mlflow.org/) to track model checkpoints as artifacts linked against training runs.
 
-```python
+```bash
 # pip install lamindb torchvision lightning mlflow
-!lamin init --storage ./lamin-mlops
+lamin init --storage ./lamin-mlops
 ```
 
 ```python
