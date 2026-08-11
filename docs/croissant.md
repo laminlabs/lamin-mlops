@@ -9,9 +9,9 @@ It works with existing datasets to make them easier to find, use, and support wi
 
 Here, we demonstrate how LaminDB can be used to validate Croissant files:
 
-```python
+```bash
 # pip install lamindb
-!lamin init --storage ./test-lamin-croissant
+lamin init --storage ./test-lamin-croissant
 ```
 
 ```python

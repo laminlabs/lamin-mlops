@@ -6,10 +6,10 @@ execute_via: python
 
 LaminDB can be integrated with W&B to track the training process and associate datasets & parameters with models.
 
-```python
+```bash
 # pip install lamindb torchvision lightning wandb
-!lamin init --storage ./lamin-mlops
-!wandb login
+lamin init --storage ./lamin-mlops
+wandb login
 ```
 
 ```python
